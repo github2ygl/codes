@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문 요약</title>
+</head>
+<body>
+    <h1>주문 요약</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>주문 번호</th>
+                <th>제품명</th>
+                <th>수량</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if order_set and order_set|length > 0 %}
+                {% for order, items in order_set %}
+                    <tr>
+                        <td colspan="100%">#{{ '%08d' % order }} </td>
+                    </tr>
+                    {% for item, quantity in items.items() %}
+                        <tr>
+                            <td></td>
+                            <td>{{ item }}</td>
+                            <td>{{ quantity }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td align='center'>
+                            <form action="/cancel" method="post">
+                            <input type="hidden" name="order_id" value="{{ order }}">
+                            <input type=submit value="취소" style="width:100%">
+                            </form>
+                        </td>
+                        <td colspan="2" align='center'>
+                            <form action="/todo" method="post">
+                            <input type="hidden" name="order_id" value="{{ order }}">
+                            <input type=submit value="주문 완료" style="width:100%">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">현재 주문 이 없습니다...</td>
+                </tr>
+            {% endif %}
+
+        </tbody>
+    </table>
+</body>
+</html>

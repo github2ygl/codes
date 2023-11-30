@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주문</title>
+</head>
+<body>
+    <h1>주문</h1>
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    <form action="/" method="post">
+        <div>
+        <label for="커피">Coffee</label>
+        <input type="number" name="커피" id="coffee" min="0" max="10" value="0">
+        <span> 재고 <span> {{stock_left[0].stock}}</span></span>
+        </div>
+        <div>
+        <label for="녹차">Green Tea</label>
+        <input type="number" name="녹차" id="Green Tea" min="0" max="10" value="0">
+        <span> 재고 <span> {{stock_left[1].stock}}</span></span>
+        </div>
+        <div>
+        <label for="홍차">Black Tea</label>
+        <input type="number" name="홍차" id="Black Tea" min="0" max="10" value="0">
+        <span> 재고 <span> {{stock_left[2].stock}}</span></span>
+        </div>
+        <div>
+        <label for="핫초콜릿">Hot Chocholete</label>
+        <input type="number" name="핫초콜릿" id="Hot Chocholete" min="0" max="10" value="0">
+        <span> 재고 <span> {{stock_left[3].stock}}</span></span>
+        </div>
+        <div>
+        <input type="submit" value="주문">
+        </div>
+    </form>
+</body>
+</html>
+
