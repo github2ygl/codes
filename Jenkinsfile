@@ -7,6 +7,7 @@ pipeline {
                 sh '''
                     echo "Multiline shell steps works too"
                     ls -lah
+                    cat /etc/os-release
                 '''
             }
         }
